@@ -21,7 +21,7 @@
 
         </thead>
         <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users" class="user-row">
                 <td data-label="Nombre">{{ user.name }}</td>
                 <td data-label="Email">{{ user.email }}</td>
                 <td data-label="Acciones">
@@ -29,6 +29,7 @@
                     <button (click)="deleteUser(user.id!)">Eliminar</button>
                 </td>
             </tr>
+
 
         </tbody>
     </table>
