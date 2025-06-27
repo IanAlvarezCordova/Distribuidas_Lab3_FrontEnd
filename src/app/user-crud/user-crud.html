@@ -1,6 +1,17 @@
 <div>
-    <!-- Tabla de usaruis-->
-     <table>
+
+    <h2>Gestion de Usuarios</h2>
+
+    <!-- Formulario de creacion/edicion -->
+    <form (submit)="saveUser(); $event.preventDefault()">
+        <input [(ngModel)]="formUser.name" name="name" placeholder="Nombre Usuario" required>
+        <input [(ngModel)]="formUser.email" name="email" placeholder="Email Usuario" required>
+        <button type="submit">{{editMode ? 'Actualizar' : 'Crear'}} </button>
+        <button type="button" (click)="resetForm()" *ngIf="editMode">Cancelar</button>
+    </form>
+
+    <!-- Tabla de usuarios--->
+    <table>
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -11,13 +22,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    <button >Editar</button>
-                    <button >Eliminar</button>
+                <td data-label="Nombre">{{ user.name }}</td>
+                <td data-label="Email">{{ user.email }}</td>
+                <td data-label="Acciones">
+                    <button (click)="editUser(user)">Editar</button>
+                    <button (click)="deleteUser(user.id!)">Eliminar</button>
                 </td>
             </tr>
+
         </tbody>
-     </table>
+    </table>
 </div>
