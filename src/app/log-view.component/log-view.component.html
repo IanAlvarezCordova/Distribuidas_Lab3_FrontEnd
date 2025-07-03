@@ -1,0 +1,28 @@
+<div>
+    <h2>Registros de Operaciones</h2>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Acción</th>
+          <th>ID de Usuario</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs" class="log-row">
+          <td data-label="Acción">{{ log.action }}</td>
+          <td data-label="ID de Usuario">{{ log.userId }}</td>
+          <td data-label="Nombre">{{ log.userName }}</td>
+          <td data-label="Email">{{ log.userEmail }}</td>
+          <td data-label="Fecha">{{ log.timestamp | date:'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

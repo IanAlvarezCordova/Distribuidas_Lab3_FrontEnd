@@ -1,36 +1,38 @@
 <div>
-
-    <h2>Gestion de Usuarios</h2>
-
-    <!-- Formulario de creacion/edicion -->
+    <h2>Gestión de Usuarios</h2>
+  
+    <!-- Mostrar mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <button (click)="openLogsWindow()">Ver Registros</button>
+    <!-- Formulario de creación/edición -->
     <form (submit)="saveUser(); $event.preventDefault()">
-        <input [(ngModel)]="formUser.name" name="name" placeholder="Nombre Usuario" required>
-        <input [(ngModel)]="formUser.email" name="email" placeholder="Email Usuario" required>
-        <button type="submit">{{editMode ? 'Actualizar' : 'Crear'}} </button>
-        <button type="button" (click)="resetForm()" *ngIf="editMode">Cancelar</button>
+      <input [(ngModel)]="formUser.name" name="name" placeholder="Nombre Usuario" required>
+      <input [(ngModel)]="formUser.email" name="email" placeholder="Email Usuario" required type="email">
+      <button type="submit">{{ editMode ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="resetForm()" *ngIf="editMode">Cancelar</button>
     </form>
-
-    <!-- Tabla de usuarios--->
+  
+    <!-- Tabla de usuarios -->
     <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users" class="user-row">
-                <td data-label="Nombre">{{ user.name }}</td>
-                <td data-label="Email">{{ user.email }}</td>
-                <td data-label="Acciones">
-                    <button (click)="editUser(user)">Editar</button>
-                    <button (click)="deleteUser(user.id!)">Eliminar</button>
-                </td>
-            </tr>
-
-
-        </tbody>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="user-row">
+          <td data-label="Nombre">{{ user.name }}</td>
+          <td data-label="Email">{{ user.email }}</td>
+          <td data-label="Acciones">
+            <button (click)="editUser(user)">Editar</button>
+            <button (click)="deleteUser(user.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-</div>
+  </div>
